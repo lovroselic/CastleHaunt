@@ -1,0 +1,187 @@
+/* coolstyle CSS v5.0 */
+
+
+/* Overrriding Bootstrap */
+
+body {
+    background: linear-gradient(90deg, #ff7f00, #fdb32d, #ff7f00) !important;
+    font-family: "Lora" !important;
+}
+
+fieldset, legend {
+    all: revert;
+}
+
+/* coolschool colors */
+
+input[type="button"] {
+    color: black;
+    background-color: whitesmoke;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #000000;
+    border-radius: 0.4rem !important;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    color: black;
+    background-color: #DDD;
+    border-style: solid;
+    border-color: #DDD;
+}
+
+input[type="button"]:focus {
+    color: white;
+    background-color: #971b0d;
+    border-style: solid;
+    border-color: #971b0d;
+}
+
+input[type="text"] {
+    text-align: left;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    max-width: 300px;
+}
+
+h1, h2 {
+    text-shadow: 1px 1px #666 !important;
+}
+
+.coolback {
+    background-color: #ffc04d !important;
+}
+
+.coolspan {
+    background-color: #a71a0b !important;
+    color: #fff !important;
+}
+
+.coolspan_light {
+    background-color: #D34D06 !important;
+    color: #fff !important;
+}
+
+.cool_page {
+    border-radius: 0.5rem !important;
+    margin-top: 7rem !important;
+}
+
+.cool_page_trans {
+    border-radius: 0.5rem !important;
+}
+
+.btn-coolbutton {
+    background: #971b0d !important;
+    color: #fff !important;
+}
+
+.cool_dark_orange {
+    background: #971b0d !important;
+    color: #fff !important;
+}
+
+.white_text {
+    color: #fff !important;
+}
+
+.cool_radius {
+    border-radius: 0.25rem !important;
+}
+
+/* Games compatibility and specifics */
+
+
+.winTrans {
+    width: 1024px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px 32px 32px;
+}
+
+.layer {
+    position: absolute;
+    left: 0;
+}
+
+#hiscore {
+    border: 1px dotted #888;
+    border-radius: 13px;
+    padding: 20px;
+    box-shadow: 2px 3px 3px 3px #333;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    white-space: pre;
+    width: 250px;
+    margin-top: 8px;
+    line-height: 1.2;
+}
+
+#SC {
+    float: right;
+}
+
+.gw {
+    float: left;
+}
+
+.gh {
+    float: none;
+    clear: both;
+}
+
+.setup_container {
+    padding: 10px;
+    float: left;
+    margin: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+.version {
+    font-family: Consolas, serif !important;
+    font-size: 0.7rem !important;
+}
+
+.section {
+    display: none;
+    font-family: Consolas, serif !important;
+    font-size: 0.7rem !important;
+}
+
+.section fieldset {
+    border: 2px #AAA ridge;
+    border-radius: 7px !important;
+    width: 600px !important;
+}
+
+.section fieldset p {
+    font-size: 0.7rem !important;
+}
+
+.section fieldset legend {
+    font-size: 0.7rem !important;
+}
+
+/** chesbook copy */
+
+.green-button {
+    color: #FFFFFF !important;
+    background-color: #007F7F !important;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #000000;
+}
+
+.green-button:hover {
+    color: black !important;
+    background-color: whitesmoke !important;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #000000;
+}

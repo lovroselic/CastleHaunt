@@ -1,0 +1,19 @@
+#QUERY {
+    float: left;
+    background-color: #000;
+    color: #0F0;
+    padding: 3px 0px 3px 0px;
+    font-family: Consolas;
+    font-size: 12px;
+    overflow: hidden;
+    margin-top: -6px;
+    display: none;
+}
+
+#QUERY p {
+    color: #0F0;
+    font-family: Consolas;
+    font-size: 11px;
+    padding-left: 8px;
+    line-height: 85%;
+}

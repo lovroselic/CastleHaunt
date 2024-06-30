@@ -1,0 +1,134 @@
+<!doctype html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="/CSS/LaughingStyle.css" rel="stylesheet" type="text/css">
+    <title>CastleHaunt</title>
+
+</head>
+
+<body>
+    <!-- copy start-->
+    <div id="preload" class="hidden"></div>
+
+    <div class="container my-5 p-2 cool_page">
+
+        <div id="setup">
+            <div id="load"></div>
+            <div class="row win" style="font-family: 'Annie'; font-size: 22px">
+                <div class="col-12 col-lg-8 my-2 ">
+                    <h1 id="title"></h1>
+                    <p>The Princess's castle has been overrun with ghost, zombies and whatnot. You might be the last
+                        friendly
+                        ghost around. But the Princess is still up to something. You better enter the castle and find
+                        what she
+                        wants.</p>
+                </div>
+                <div class="col-12 col-lg-4 my-2 white_text d-flex justify-content-center" id="SC">
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div id="debug" class="section">
+                    <fieldset>
+                        <legend>
+                            Version:
+                        </legend>
+                        ENGINE: <span id="engine_version"></span><br>
+                        Prototype LIB: <span id="lib_version"></span><br>
+                        GRID: <span id="grid_version"></span><br>
+                        IAM: <span id="iam_version"></span><br>
+                    </fieldset>
+
+                </div>
+            </div>
+
+
+            <p id="buttons">
+                <input type='button' id='toggleHelp' value='Show/Hide Instructions'>
+                <input type='button' id='toggleAbout' value='About'>
+            </p>
+
+
+            <div id="help" class="section">
+                <fieldset>
+                    <legend>
+                        Instructions:
+                    </legend>
+                    <p><strong>Movement</strong>: cursor keys.</p>
+                    <p><strong>SPACE</strong>: pick up things, open/unlock door, search containers</p>
+                    <p><strong>A, D</strong>: move inventory selector left, right (choose right key to unlock door)
+                    </p>
+                    <p><strong>RETURN</strong>: drop selected item or use selected item</p>
+                    <p><strong>CTRL + direction</strong>: SHOOT deadly yellow 'ghost repelling' magic orbs</p>
+                    <p></p>
+                    <p><strong>Survival hints</strong>:</p>
+                    <p>In this game, a cake is healthier than apple.</p>
+                    <p>The more pouches for storing deadly yellow 'ghost repelling' magic orbs you have (used), the
+                        more
+                        orbs you can carry.</p>
+                    <p>Avoid deadly red 'hero repelling' magic orbs. They are not healthy.</p>
+                    <p>You can shoot diagonally.</p>
+                    <p>Killing all creatures is not always the best strategy.</p>
+                    <p>Killing all creatures is sometimes the best strategy.</p>
+                    <p>There are potions that will make you faster.</p>
+                    <p>Bombs are not dangerous to you.</p>
+                    <p>I wonder what 'time runes' might do ...</p>
+                    <p>Smart inventory management might save your life.</p>
+
+                </fieldset>
+            </div>
+
+            
+            <div id="about" class="section">
+                <fieldset>
+                    <legend>
+                        About:
+                    </legend>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/f/fa/Atic_Atac_gameplay.png" alt="atic atac"
+                        class="border border-dark p-1 m-2 float-start" title="Atic Atac">
+                    <p>When I first saw <a href="https://en.wikipedia.org/wiki/Atic_Atac" target="_blank">Atic
+                            Atac</a>
+                        in 1983 I was a kid and I was mightily impressed. Remember, those were the times of Space
+                        Invaders and Pacman. Atic Atac was a revolution. But since I had C64 and not ZX Spectrum I
+                        have
+                        actually never played Atic Atac by myself ... However, it have been my desire to be someday
+                        able
+                        to program such a game and 35 years later my wish has came true.
+                    </p>
+                    <p>While CastleHaunt is obviously a clone of Atic Atac, some game elements have been changed so
+                        CastlaHaunt has its own flavour. The castle interior is also a shrine/museum of some famous
+                        80'
+                        and 90' computer games. Or else the Princess is one fanatical gamer.</p>
+                    <p>Source of graphics are various free resource sites. No copyrighted images were intendedly
+                        used in
+                        the making of the game. Code is written in JavaScript using JQuery library.</p>
+                </fieldset>
+            </div>
+
+            <p class="version" id="version"></p>
+        </div>
+
+    </div>
+    <div class="container">
+        <div id="game" class="winTrans"></div>
+        <div id="bottom" style="margin-top: 520px"></div>
+        <div id="temp" class="hidden"></div>
+        <div id="temp2" class="hidden"></div>
+    </div>
+    <!-- copy end-->
+    <!-- External JS -->
+    <script src="/External/bootstrap.bundle.min.js"></script>
+    <script src="/External/jquery-3.6.0.min.js"></script>
+    <!-- JS -->
+    <script src="//Code/JS/Library/Engine/prototypeLIB_1_07.js" type="text/javascript"></script>
+    <script src="/Code/JS/Library/Engine/engine_1_45.js" type="text/javascript"></script>
+    <script src="/Code/JS/Library/Misc/score_1_05.js" type="text/javascript"></script>
+    <script src="/Assets/Definitions/CastleHaunt/assets_castleHaunt.js" type="text/javascript"></script>
+    <script src="/Assets/Definitions/CastleHaunt/map_castleHaunt.js" type="text/javascript"></script>
+    <script src="/Games/CastleHaunt/castleHaunt.js" type="text/javascript"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+h1 {
+    font-family:'Tangerine', serif!important;
+    font-size:48px
+}
+td {
+    padding:5px
+}
+.tile {
+    width:145px;
+    height:145px;
+    display:inline-block;
+    margin:5px;
+    border-radius:15px;
+    cursor:pointer;
+    text-align:center;
+    vertical-align:middle
+}
+.tile p {
+    margin-top:60px;
+    font-size:18px;
+    text-align:center;
+}
+.back {
+    background:linear-gradient(45deg, #FFAD5C, #FF9A5C)!important;
+    border:solid 2px
+}
+.face {
+    background:linear-gradient(135deg, #EEE, #CCC)!important;
+    border:dotted 2px #777
+}
+.cface {
+    border:dotted 2px #000;
+    background: white;
+}
+.guessed {
+    background:linear-gradient(135deg, #FF6, #FFFFC2)!important;
+    border:solid 2px #777
+}
+.cguessed {
+    border:solid 2px #777;
+    background: white;
+}
+.inf {
+    margin:auto;
+    padding-top:10px
+}
+.inf p {
+    display:inline-table
+}
+.red {
+    color: red
+}
+.black {
+    color: #000
+}
