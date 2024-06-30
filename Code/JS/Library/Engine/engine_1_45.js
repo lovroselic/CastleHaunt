@@ -9,7 +9,8 @@
 //to do:
 ///////////////////////////////////////////////////
 
-var ENGINE = {
+const ENGINE = {
+  VERSION: "1.45.01", //custom version for porting to LS page
   INI: {
     STDW: 360,
     STDH: 72,
@@ -21,25 +22,25 @@ var ENGINE = {
     SPRITESHEET_HEIGHT: 48,
     SPRITESHEET_DEFAULT_WIDTH: 48
   },
-  SOURCE: "/Games/AA/",
+  SOURCE: "/Assets/Graphics/Legacy/",
   checkIntersection: true, //use linear intersection collision method after pixelperfect collision; set to false to exclude
   checkProximity: true, //check proximity before pixel perfect evaluation of collision to background
-  SRC_rel: "/Games/AA/",
+  //SRC_rel: "/Games/AA/",
   LOAD_W: 202,
   LOAD_H: 22,
-  disableArrows: function(){
-    $(document).keypress(function(event) {
+  disableArrows: function () {
+    $(document).keypress(function (event) {
       if (event.which === 38 || event.which === 40) {
         event.preventDefault();
       }
     });
-    $(document).keydown(function(event) {
+    $(document).keydown(function (event) {
       if (event.which === 38 || event.which === 40) {
         event.preventDefault();
       }
     });
   },
-  preLoadImages: function() {
+  preLoadImages: function () {
     ENGINE.count = 0;
     ENGINE.spriteCount = 0;
     ENGINE.tileGraphics = [];
@@ -52,10 +53,10 @@ var ENGINE = {
       ENGINE.tileGraphics[ix].src = fileNames[ix].filename;
       $("#preload").append(
         "<img id='" +
-          fileNames[ix].id +
-          "' src='" +
-          fileNames[ix].filename +
-          "' crossOrigin='Anonymous'/>"
+        fileNames[ix].id +
+        "' src='" +
+        fileNames[ix].filename +
+        "' crossOrigin='Anonymous'/>"
       );
     }
     return;
@@ -91,7 +92,7 @@ var ENGINE = {
       return fileNames;
     }
   },
-  expandSprites: function() {
+  expandSprites: function () {
     var spriteSheet;
     for (var prop in World) {
       var LN = World[prop].length;
@@ -149,23 +150,23 @@ var ENGINE = {
       }
     }
   },
-  init: function() {
+  init: function () {
     LAYER = {};
     SPRITE = {};
     ASSET = {};
     $("#temp").append(
       "<canvas id ='temp_canvas' width='" +
-        INI.sprite_maxW +
-        "' height='" +
-        INI.sprite_maxH +
-        "'></canvas>"
+      INI.sprite_maxW +
+      "' height='" +
+      INI.sprite_maxH +
+      "'></canvas>"
     );
     $("#temp2").append(
       "<canvas id ='temp_canvas2' width='" +
-        INI.sprite_maxW +
-        "' height='" +
-        INI.sprite_maxH +
-        "'></canvas>"
+      INI.sprite_maxW +
+      "' height='" +
+      INI.sprite_maxH +
+      "'></canvas>"
     );
     LAYER.temp = $("#temp_canvas")[0].getContext("2d");
     LAYER.temp2 = $("#temp_canvas2")[0].getContext("2d");
@@ -177,7 +178,7 @@ var ENGINE = {
   statusWIDTH: 312,
   currentTOP: 0,
   currentLEFT: 0,
-  addBOX: function(id, width, height, layers, alias, type) {
+  addBOX: function (id, width, height, layers, alias, type) {
     if (id === null) return;
     if (width === null) return;
     if (height === null) return;
@@ -192,12 +193,12 @@ var ENGINE = {
     if (layers === 1) {
       $("#" + id).append(
         "<canvas id='" +
-          id +
-          "_canvas' width='" +
-          width +
-          "' height='" +
-          height +
-          "'></canvas>"
+        id +
+        "_canvas' width='" +
+        width +
+        "' height='" +
+        height +
+        "'></canvas>"
       );
       prop = alias.shift();
       LAYER[prop] = $("#" + id + "_canvas")[0].getContext("2d");
@@ -233,22 +234,22 @@ var ENGINE = {
       }
     }
   },
-  spriteDraw: function(layer, X, Y, image) {
+  spriteDraw: function (layer, X, Y, image) {
     var CX = Math.floor(X - image.width / 2);
     var CY = Math.floor(Y - image.height / 2);
     var CTX = LAYER[layer];
     CTX.drawImage(image, CX, CY);
   },
-  draw: function(layer, X, Y, image) {
+  draw: function (layer, X, Y, image) {
     var CTX = LAYER[layer];
     CTX.drawImage(image, X, Y);
   },
-  drawTile: function(layer, X, Y, tile) {
+  drawTile: function (layer, X, Y, tile) {
     var CTX = LAYER[layer];
     var image = $("#" + tile.id)[0];
     CTX.drawImage(image, X, Y);
   },
-  drawPool: function(layer, pool, sprite) {
+  drawPool: function (layer, pool, sprite) {
     var CTX = LAYER[layer];
     var PL = pool.length;
     if (PL === 0) return;
@@ -256,16 +257,16 @@ var ENGINE = {
       ENGINE.spriteDraw(layer, pool[i].x, pool[i].y, sprite);
     }
   },
-  clearLayer: function(layer) {
+  clearLayer: function (layer) {
     var CTX = LAYER[layer];
     CTX.clearRect(0, 0, CTX.canvas.width, CTX.canvas.height);
   },
-  fillLayer: function(layer, colour) {
+  fillLayer: function (layer, colour) {
     var CTX = LAYER[layer];
     CTX.fillStyle = colour;
     CTX.fillRect(0, 0, CTX.canvas.width, CTX.canvas.height);
   },
-  tileToImage: function() {
+  tileToImage: function () {
     var image;
     for (var prop in World) {
       var LN = World[prop].length;
@@ -277,7 +278,7 @@ var ENGINE = {
       }
     }
   },
-  trimCanvas: function(data) {
+  trimCanvas: function (data) {
     var top = 0,
       bottom = data.height,
       left = 0,
@@ -305,7 +306,7 @@ var ENGINE = {
       return true;
     }
   },
-  rotateImage: function(image, degree, newName) {
+  rotateImage: function (image, degree, newName) {
     var CTX = LAYER.temp;
     var CW = image.width;
     var CH = image.height;
@@ -336,7 +337,7 @@ var ENGINE = {
     SPRITE[newName].width = CTX.canvas.width;
     SPRITE[newName].height = CTX.canvas.height;
   },
-  createSprites: function() {
+  createSprites: function () {
     var LN = Creation.length;
     var totalLength = 0;
     for (var x = 0; x < LN; x++) {
@@ -363,19 +364,19 @@ var ENGINE = {
     }
     ENGINE.HMCI = totalLength;
   },
-  creationSpriteCount: function() {
+  creationSpriteCount: function () {
     ENGINE.spriteCount++;
     ENGINE.drawLoadingGraph(ENGINE.spriteCount, ENGINE.HMCI, "Sprites");
     if (ENGINE.spriteCount === ENGINE.HMCI) {
       ENGINE.ready();
     }
   },
-  ready: function() {
+  ready: function () {
     $("#buttons").prepend("<input type='button' id='startGame' value='START'>");
     $("#load").addClass("hidden");
     $("#startGame").on("click", PRG.start);
   },
-  intersectionCollision: function(actor1, actor2) {
+  intersectionCollision: function (actor1, actor2) {
     if (actor1.class !== "bullet" && actor2.class !== "bullet") return;
     if (actor1.prevX === null || actor2.prevX === null) return;
 
@@ -417,7 +418,7 @@ var ENGINE = {
       line2.y2
     );
   },
-  lineIntersects: function(a, b, c, d, p, q, r, s) {
+  lineIntersects: function (a, b, c, d, p, q, r, s) {
     //https://stackoverflow.com/a/24392281/4154250
     var det, gamma, lambda;
     det = (c - a) * (s - q) - (r - p) * (d - b);
@@ -429,7 +430,7 @@ var ENGINE = {
       return 0 < lambda && lambda < 1 && (0 < gamma && gamma < 1);
     }
   },
-  pixPerfectCollision: function(actor1, actor2) {
+  pixPerfectCollision: function (actor1, actor2) {
     var w1 = parseInt(actor1.width / 2, 10);
     var w2 = parseInt(actor2.width / 2, 10);
     var h1 = parseInt(actor1.height / 2, 10);
@@ -477,7 +478,7 @@ var ENGINE = {
       return ENGINE.intersectionCollision(actor1, actor2);
     } else return false;
   },
-  collision: function(actor1, actor2) {
+  collision: function (actor1, actor2) {
     var X = Math.abs(actor1.x - actor2.x);
     var Y = Math.abs(actor1.y - actor2.y);
     if (Y >= INI.COLLISION_SAFE) return false;
@@ -490,7 +491,7 @@ var ENGINE = {
     if (X >= w1 + w2 || Y >= h1 + h2) return false;
     return ENGINE.pixPerfectCollision(actor1, actor2);
   },
-  collisionToBackground: function(actor, layer) {
+  collisionToBackground: function (actor, layer) {
     var CTX = layer;
     var maxSq = Math.max(actor.width, actor.height);
     var R = Math.ceil(0.5 * Math.sqrt(2 * Math.pow(maxSq, 2)));
@@ -544,7 +545,7 @@ var ENGINE = {
       return index;
     }
   },
-  drawLoadingGraph: function(count, HMI, text) {
+  drawLoadingGraph: function (count, HMI, text) {
     var percent = Math.floor(count / HMI * 100);
     var CTX = ENGINE.ctx;
     CTX.clearRect(0, 0, ENGINE.LOAD_W, ENGINE.LOAD_H);
@@ -570,7 +571,7 @@ var ENGINE = {
     );
     return;
   },
-  spriteDump: function(layer) {
+  spriteDump: function (layer) {
     console.log("********* SPRITE DUMP *********");
     console.log(SPRITE);
     var x = 0;
@@ -586,7 +587,7 @@ var ENGINE = {
       }
     }
   },
-  drawRoom: function(room) {
+  drawRoom: function (room) {
     ENGINE.clearLayer("background");
     ENGINE.clearLayer("floor");
     ENGINE.clearLayer("door");
@@ -598,14 +599,14 @@ var ENGINE = {
     ENGINE.drawPlayers(room);
     ENGINE.drawAlert(room);
   },
-  drawAlert: function(room) {
+  drawAlert: function (room) {
     if (MAP["room" + room].alertFlag) {
       MAP["room" + room].alertFlag = false; // just once
       ENGINE.clearLayer("alert");
       ENGINE.alert(room);
     }
   },
-  renderRoom: function(room) {
+  renderRoom: function (room) {
     var type = MAP["room" + room].type;
     switch (type) {
       case "indoor":
@@ -619,7 +620,7 @@ var ENGINE = {
         break;
     }
   },
-  renderStaircase: function(room) {
+  renderStaircase: function (room) {
     var soba = MAP["room" + room];
     var obj = soba.grid;
     var floor = $("#" + soba.floor.id)[0];
@@ -757,7 +758,7 @@ var ENGINE = {
     }
   },
 
-  renderInsideRoom: function(room) {
+  renderInsideRoom: function (room) {
     var soba = MAP["room" + room];
     var obj = soba.grid;
     var floor = $("#" + soba.floor.id)[0];
@@ -865,7 +866,7 @@ var ENGINE = {
       ENGINE.renderWDoor(obj, soba.wdoor);
     }
   },
-  renderOutsideRoom: function(room) {
+  renderOutsideRoom: function (room) {
     var soba = MAP["room" + room];
     var obj = soba.grid;
     var floor = $("#" + soba.floor.id)[0];
@@ -995,31 +996,31 @@ var ENGINE = {
       ENGINE.renderWDoor(obj, soba.wdoor);
     }
   },
-  renderNDoor: function(obj, type) {
+  renderNDoor: function (obj, type) {
     var inX = parseInt(obj.x + obj.width / 2, 10);
     var inY = obj.y;
     var direction = new Vector(0, -1);
     ENGINE.renderDoor(inX, inY, direction, type);
   },
-  renderSDoor: function(obj, type) {
+  renderSDoor: function (obj, type) {
     var inX = parseInt(obj.x + obj.width / 2, 10);
     var inY = obj.y + obj.height;
     var direction = new Vector(0, 1);
     ENGINE.renderDoor(inX, inY, direction, type);
   },
-  renderWDoor: function(obj, type) {
+  renderWDoor: function (obj, type) {
     var inX = obj.x;
     var inY = parseInt(obj.y + obj.height / 2, 10);
     var direction = new Vector(-1, 0);
     ENGINE.renderDoor(inX, inY, direction, type);
   },
-  renderEDoor: function(obj, type) {
+  renderEDoor: function (obj, type) {
     var inX = obj.x + obj.width;
     var inY = parseInt(obj.y + obj.height / 2, 10);
     var direction = new Vector(1, 0);
     ENGINE.renderDoor(inX, inY, direction, type);
   },
-  renderDoor: function(inX, inY, direction, type) {
+  renderDoor: function (inX, inY, direction, type) {
     var CTX = LAYER.door;
     CTX.lineWidth = 1;
     CTX.strokeStyle = "#000";
@@ -1120,7 +1121,7 @@ var ENGINE = {
       CTW.clearRect(WX, WY, WW, WH);
     }
   },
-  doorKnobAt: function(x, y) {
+  doorKnobAt: function (x, y) {
     var CTX = LAYER.door;
     CTX.save();
     CTX.lineWidth = 1;
@@ -1137,7 +1138,7 @@ var ENGINE = {
     CTX.fill();
     CTX.restore();
   },
-  drawItems: function(room) {
+  drawItems: function (room) {
     var roomItems = MAP["room" + room].items;
     if (roomItems) {
       var IL = roomItems.length;
@@ -1159,7 +1160,7 @@ var ENGINE = {
       }
     }
   },
-  drawFurniture: function(room) {
+  drawFurniture: function (room) {
     var roomFurniture = MAP["room" + room].furniture;
     if (roomFurniture) {
       var FL = roomFurniture.length;
@@ -1175,7 +1176,7 @@ var ENGINE = {
       }
     }
   },
-  drawContainer: function(room) {
+  drawContainer: function (room) {
     ENGINE.clearLayer("container");
     var cont = MAP["room" + room].container;
     if (cont) {
@@ -1187,14 +1188,14 @@ var ENGINE = {
       );
     }
   },
-  drawPlayers: function(room) {
+  drawPlayers: function (room) {
     ENGINE.clearLayer("players");
     var player = MAP["room" + room].player;
     if (player) {
       ENGINE.drawTile("players", player.x, player.y, player.tile);
     }
   },
-  roomData: function(room, actor) {
+  roomData: function (room, actor) {
     var data = {};
     var soba = MAP["room" + room];
     data.x0 = soba.grid.x + Math.floor(actor.width / 4);
@@ -1203,10 +1204,10 @@ var ENGINE = {
     data.y1 = soba.grid.y + soba.grid.height - Math.floor(actor.height / 4);
     return data;
   },
-  openDoor: function(door, room) {
+  openDoor: function (door, room) {
     MAP["room" + room][door + "door"] = "open";
   },
-  bounceMove: function(pool, margin) {
+  bounceMove: function (pool, margin) {
     var PL = pool.length;
     if (PL === 0) return;
     for (var i = 0; i < PL; i++) {
@@ -1230,7 +1231,7 @@ var ENGINE = {
       }
     }
   },
-  birthEnemies: function(room) {
+  birthEnemies: function (room) {
     if (ENGINE.alertMode) return;
     var enemy = MAP["room" + room].enemy;
     if (enemy === undefined) return;
@@ -1299,13 +1300,13 @@ var ENGINE = {
       return points;
     }
   },
-  alert: function(room) {
+  alert: function (room) {
     var CL = ENGINE.getCanvasNumber("ROOM");
     var cname = "#ROOM_canvas_" + --CL;
     var text = MAP["room" + room].alert;
     ENGINE.alertMode = true;
     GAME.clearAllKeys();
-    ENGINE.disableArrows(); 
+    ENGINE.disableArrows();
     var CTX = LAYER.alert;
     CTX.save();
     var words = text.split(" ");
@@ -1397,11 +1398,11 @@ var ENGINE = {
     CTX.lineWidth = 1;
     CTX.restore();
 
-    $(cname).mousemove(function(event) {
+    $(cname).mousemove(function (event) {
       ENGINE.mouseOver(event, cname);
     });
 
-    $(cname).click(function(event) {
+    $(cname).click(function (event) {
       ENGINE.mouseClick(event, cname);
     });
 
@@ -1421,7 +1422,7 @@ var ENGINE = {
     width: 48,
     heigth: 32
   },
-  mouseOver: function(event, cname) {
+  mouseOver: function (event, cname) {
     var canvasOffset = $(cname).offset();
     var offsetX = canvasOffset.left;
     var offsetY = canvasOffset.top;
@@ -1438,7 +1439,7 @@ var ENGINE = {
       $(cname).css("cursor", "auto");
     }
   },
-  mouseClick: function(event, cname) {
+  mouseClick: function (event, cname) {
     var canvasOffset = $(cname).offset();
     var offsetX = canvasOffset.left;
     var offsetY = canvasOffset.top;
@@ -1459,14 +1460,14 @@ var ENGINE = {
       GAME.continue();
     }
   },
-  getCanvasNumber: function(id) {
+  getCanvasNumber: function (id) {
     var cnv = $("#" + id + " .layer");
     return cnv.length;
   }
 };
 
 var LEVEL = {
-  draw: function(level) {
+  draw: function (level) {
     var CTX = LAYER.level;
     LAYER.level.canvas.width = LEVELS[level].worldLength;
     var LN = LEVELS[level].world.length;
@@ -1680,7 +1681,7 @@ var LEVEL = {
       y = INI.GAME_HEIGHT - chunk.y;
     }
   },
-  paintVisible: function() {
+  paintVisible: function () {
     ENGINE.clearLayer("world");
     var CTX = LAYER.world;
     if (GAME.x < 0) GAME.x = 0;
@@ -1696,13 +1697,13 @@ var LEVEL = {
       INI.GAME_HEIGHT
     );
   },
-  moveTo: function(x) {
+  moveTo: function (x) {
     GAME.x = x;
   }
 };
 
 var PATTERN = {
-  create: function(which, img) {
+  create: function (which, img) {
     //creates PATTERN.which from Tile
     var image = $("#" + img.id)[0];
     var CTX = LAYER.temp;
@@ -1834,7 +1835,7 @@ var MATERIAL = {
       ]
     }
   },
-  create: function(what) {
+  create: function (what) {
     var append = '<div id="' + what + '" class="hidden"></div>';
     $("body").append(append);
     $("#" + what).append(
@@ -1859,7 +1860,7 @@ var MATERIAL = {
 };
 
 ////////////////////////////////////////////////
-var RoomGrid = function(shape, width, height) {
+var RoomGrid = function (shape, width, height) {
   this.shape = shape;
   if (width % 2) width--;
   if (height % 2) height--;
@@ -1881,7 +1882,7 @@ var HRectRM = new RoomGrid("hrect", ENGINE.INI.STDW / 2, ENGINE.INI.STDW);
 var StairRM = new RoomGrid("stair", ENGINE.INI.STDW / 3, ENGINE.INI.STDW);
 
 /////////
-var AnimationSPRITE = function(x, y, type, howmany) {
+var AnimationSPRITE = function (x, y, type, howmany) {
   this.x = x;
   this.y = y;
   this.pool = [];
@@ -1892,7 +1893,7 @@ var AnimationSPRITE = function(x, y, type, howmany) {
 ///////////////////////////////
 var EXPLOSIONS = {
   pool: [],
-  draw: function(layer) {
+  draw: function (layer) {
     // draws AnimationSPRITE from EXPLOSIONS.pool
     layer = layer || "explosion"; // "explosion" layer used if none provided
     ENGINE.clearLayer(layer);
@@ -1913,14 +1914,14 @@ var EXPLOSIONS = {
   }
 };
 ///////////////////////////////////////////////////////
-var LiveSPRITE = function(left, right, front, back) {
+var LiveSPRITE = function (left, right, front, back) {
   this.left = left;
   this.right = right;
   this.front = front;
   this.back = back;
 };
 
-var ACTOR = function(sprite_class, x, y, orientation, asset) {
+var ACTOR = function (sprite_class, x, y, orientation, asset) {
   this.class = sprite_class;
   this.x = x || 0;
   this.y = y || 0;
@@ -1933,11 +1934,11 @@ var ACTOR = function(sprite_class, x, y, orientation, asset) {
   this.front_index = 0;
   this.back_index = 0;
 
-  this.sprite = function(sprite_class) {
+  this.sprite = function (sprite_class) {
     return SPRITE[this.name];
   };
 
-  this.refresh = function() {
+  this.refresh = function () {
     if (this.orientation === null) {
       this.name = this.class;
     } else {
@@ -1955,14 +1956,14 @@ var ACTOR = function(sprite_class, x, y, orientation, asset) {
 
   this.refresh();
 
-  this.animateMove = function(orientation) {
+  this.animateMove = function (orientation) {
     this[orientation + "_index"]++;
     if (this[orientation + "_index"] >= this.asset[orientation].length)
       this[orientation + "_index"] = 0;
     this.refresh();
   };
 
-  this.getOrientation = function(dir) {
+  this.getOrientation = function (dir) {
     var orientation;
     switch (dir.x) {
       case 1:
@@ -1980,7 +1981,7 @@ var ACTOR = function(sprite_class, x, y, orientation, asset) {
             orientation = "back";
             break;
           case 0:
-            orientation = "front"; 
+            orientation = "front";
             break;
         }
         break;

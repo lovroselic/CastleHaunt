@@ -1540,5 +1540,5 @@ $(document).ready(function () {
   SCORE.init("SC", "CastleHaunt", 10, 10000);
   SCORE.loadHS();
   SCORE.hiScore();
-  BACKUP_MAP = $.extend(true, {}, MAP);
+  var BACKUP_MAP = $.extend(true, {}, MAP);
 });
