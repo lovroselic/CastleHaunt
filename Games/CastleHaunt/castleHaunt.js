@@ -12,7 +12,7 @@
  */
 
 const PRG = {
-  VERSION: "1.01.00",
+  VERSION: "1.02",
   NAME: "CastleHaunt",
   INIT: function () {
     //console.clear();
