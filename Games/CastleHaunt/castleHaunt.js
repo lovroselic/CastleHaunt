@@ -12,7 +12,7 @@
  */
 
 const PRG = {
-  VERSION: "1.02",
+  VERSION: "1.03",
   NAME: "CastleHaunt",
   INIT: function () {
     //console.clear();
@@ -1034,8 +1034,8 @@ var GAME = {
     $("#bottom")[0].scrollIntoView();
     GAME.stopAnimation = false;
     GAME.score = 0;
-    GAME.lives = 5; //DEFAULT
-    //GAME.lives = 1; //DEBUG
+    //GAME.lives = 5; //DEFAULT
+    GAME.lives = 1; //DEBUG
     GAME.kills = 0; //STAT
     GAME.started = Date.now();
     GAME.frame = {};
@@ -1091,7 +1091,7 @@ var GAME = {
     GAME.prepareForRestart();
   },
   prepareForRestart: function () {
-    MAP = $.extend(true, {}, BACKUP_MAP);
+    MAP = $.extend(true, {}, GAME.BACKUP_MAP);
     $("#startGame").removeClass("hidden");
   },
   bulletManipulation: function () {
@@ -1540,5 +1540,5 @@ $(document).ready(function () {
   SCORE.init("SC", "CastleHaunt", 10, 10000);
   SCORE.loadHS();
   SCORE.hiScore();
-  var BACKUP_MAP = $.extend(true, {}, MAP);
+  GAME.BACKUP_MAP = $.extend(true, {}, MAP);
 });
